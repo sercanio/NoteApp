@@ -1,14 +1,53 @@
 <div class="w-full">
-  <form>
-    <label class="formlabel">
+  <form [formGroup]="applyForm" (submit)="AddTask()">
+    <label class="form-control w-96 mx-auto">
       <div class="label">
         <span class="label-text">Type your current task</span>
       </div>
-      <input
-        type="text"
-        placeholder="Type here"
-        class="input input-bordered w-full max-w-3xl"
-      />
+      <div class="join join-vertical lg:join-horizontal">
+        <input
+          type="text"
+          placeholder="Type here"
+          class="join-item input input-bordered w-full max-w-3xl focus:outline-none"
+          formControlName="title"
+        />
+        <button class="join-item btn btn-primary">Add Task</button>
+      </div>
     </label>
   </form>
+  <div *ngFor="let task of Tasks">
+    <div class="card w-96 bg-base-100 shadow-xl mx-auto my-2">
+      <div class="card-body">
+        <h2
+          class="card-title"
+          [ngClass]="{ 'line-through italic': task?.completed }"
+        >
+          {{ task!.title }}
+        </h2>
+        <!-- <p>If a dog chews shoes whose shoes does he choose?</p> -->
+        <div class="card-actions justify-end">
+          <button
+            class="btn btn-error btn-outline"
+            (click)="deleteTask(task!.id)"
+          >
+            Delete
+          </button>
+          <button
+            class="btn btn-warning btn-outline"
+            (click)="switchTaskStatus(task!.id)"
+            *ngIf="!task?.completed"
+          >
+            Complete
+          </button>
+          <button
+            class="btn btn-warning btn-outline"
+            (click)="switchTaskStatus(task!.id)"
+            *ngIf="task?.completed"
+          >
+            Undone
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

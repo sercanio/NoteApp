@@ -2,8 +2,19 @@ import { Component, Input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
+import { Guid } from 'guid-typescript';
 
 export type Theme = 'dark' | 'light' | undefined;
+export type Task =
+  | {
+      id: Guid;
+      title: string;
+      description: string;
+      completed: boolean;
+      createdAt: Date;
+      updatedAt: Date;
+    }
+  | undefined;
 
 @Component({
   selector: 'app-root',
