@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
 import { Guid } from 'guid-typescript';
 
 @Component({
-  selector: 'app-home',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './home.component.html',
